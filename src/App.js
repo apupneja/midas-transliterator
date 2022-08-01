@@ -41,7 +41,8 @@ function App() {
     if (e.key === " " ||
       e.code === "Space" ||      
       e.keyCode === 32   ||
-      e.code === "Enter"
+      e.code === "Enter" ||
+      e.keyCode === 229
     ){
       setSpaceBarEnter(1);
     }
