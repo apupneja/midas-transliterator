@@ -7,27 +7,26 @@ function App() {
 
   useEffect(()=> {
     if(spaceBarEnter===1){
-      getTransliteration(inputValue) 
+      const getTransliteration =(inputValue)=>{
+        let val = inputValue
+        let arr = val.split(' ')
+        val = arr[arr.length-1]
+        if(val ==='.'){
+          return;
+        }
+        const url = `https://inputtools.google.com/request?text=${val}&itc=hi-t-i0-und&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage`;
+        fetch(url).then((response) => response.json())
+                  .then(function(data) {
+                    let arr = inputValue.split(' ');
+                    console.log(data)
+                    arr[arr.length-1] = data[1][0][1][0];
+                    setInputValue(arr.join(' ')+' ');
+                  })
+                  .catch((error) => console.log(error));
+  };
       setSpaceBarEnter(0);
     }
-  }, [spaceBarEnter])
-
-  const getTransliteration =(val)=>{
-    let arr = val.split(' ')
-    val = arr[arr.length-1]
-    if(val =='.'){
-      return;
-    }
-    const url = `https://inputtools.google.com/request?text=${val}&itc=hi-t-i0-und&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage`;
-    fetch(url).then((response) => response.json())
-              .then(function(data) {
-                let arr = inputValue.split(' ');
-                console.log(data)
-                arr[arr.length-1] = data[1][0][1][0];
-                setInputValue(arr.join(' ')+' ');
-              })
-              .catch((error) => console.log(error));
-  };
+  }, [spaceBarEnter,inputValue])
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
