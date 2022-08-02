@@ -78,6 +78,9 @@ function App() {
             value={inputValue}
             onChange={handleInputChange}
             //onKeyDown={handleKeyPress}
+            placeholder="Enter a word in hinglish(like 'mera') and press enter 
+                          to get the word in hindi. Use the five buttons to choose
+                          the correct version of the word you wanted to type"
             id = "textbox"
           />
       </header>
