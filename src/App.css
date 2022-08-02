@@ -25,7 +25,8 @@
   color: white;
 }
 
-.textbox{
+#textbox{
+  padding: 2%;
   width: 60%;
   height: 40%;
   background-color: #bebfc1;

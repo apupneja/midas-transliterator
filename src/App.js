@@ -36,13 +36,14 @@ function App() {
     setInputValue(e.target.value);
   };
 
+  useEffect(()=>{
+    document.getElementById("textbox").addEventListener("input",handleKeyPress);
+  },[])
+
   const handleKeyPress = (e) => {
-    //console.log(e.key)
-    if (e.key === " " ||
-      e.code === "Space" ||      
-      e.keyCode === 32   ||
-      e.code === "Enter" ||
-      e.keyCode === 229
+    let key = e.key ? e.key : e.data;
+    //console.log(key)
+    if (key === " "
     ){
       setSpaceBarEnter(1);
     }
@@ -70,8 +71,8 @@ function App() {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            onKeyDown={handleKeyPress}
-            className = "textbox"
+            //onKeyDown={handleKeyPress}
+            id = "textbox"
           />
       </header>
     </div>
