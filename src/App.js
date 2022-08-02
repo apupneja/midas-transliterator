@@ -6,7 +6,7 @@ function App() {
   const [spaceBarEnter, setSpaceBarEnter] = React.useState(0);
   const [suggestions, setSuggestions] = React.useState([]);
 
-  const getTransliteration =(val)=>{
+  const getTransliteration =async(val)=>{
     let arr = val.split(' ')
     val = arr[arr.length-1]
     if(val ==='.'){
@@ -14,7 +14,7 @@ function App() {
       return;
     }
     const url = `https://inputtools.google.com/request?text=${val}&itc=hi-t-i0-und&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage`;
-    fetch(url).then((response) => response.json())
+    await fetch(url).then((response) => response.json())
               .then(function(data) {
                 let arr = inputValue.split(' ');
                 //console.log(data)
@@ -45,8 +45,11 @@ function App() {
      if (keyCode === 0 || keyCode === 229) { 
          keyCode = e.target.value.charAt(e.target.selectionStart - 1).charCodeAt();             
      }
-    console.log(keyCode)
-    if (keyCode === 32
+
+    // console.log(e.target.value.charAt(e.target.selectionStart-2).charCodeAt())
+    // console.log(keyCode && e.target.value.charAt(e.target.selectionStart-2).charCodeAt()-2000<=0)
+    if (keyCode === 32 && 
+      e.target.value.charAt(e.target.selectionStart-2).charCodeAt()-2000<=0
     ){
       setSpaceBarEnter(1);
     }
