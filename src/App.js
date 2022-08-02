@@ -41,9 +41,12 @@ function App() {
   },[])
 
   const handleKeyPress = (e) => {
-    let key = e.key ? e.key : e.data;
-    //console.log(key)
-    if (key === " "
+    var keyCode = e.keyCode || e.which;
+     if (keyCode === 0 || keyCode === 229) { 
+         keyCode = e.target.value.charAt(e.target.selectionStart - 1).charCodeAt();             
+     }
+    //console.log(keyCode)
+    if (keyCode === " "
     ){
       setSpaceBarEnter(1);
     }
